@@ -19,11 +19,11 @@ import mino.Mino_S;
 import mino.Mino_T;
 import mino.Mino_Z;
 
-//
+//Manages gameplay components
 public class PlayManager {
 	//Main Play Area
 	
-	/*플레이 영역의 단일 블록의 크기는 30픽셀로 설정*/
+	/*플레이 영역의 단일 블록의 크기는 30픽셀로 설정, 즉 12 * 20 만큼 블록을 배치 가능*/
 	final int WIDTH = 360;
 	final int HEIGHT = 600;
 	public static int left_x;
@@ -42,7 +42,7 @@ public class PlayManager {
 	final int NEXTMINO_X;
 	final int NEXTMINO_Y;
 	
-	//Blocks stacked in the main play area
+	//Blocks stacked in the main play area(Minoes that have already been used are stored here)
 	public static ArrayList<Block> staticBlocks = new ArrayList<>();
 	
 	//Effect
@@ -69,9 +69,11 @@ public class PlayManager {
 		top_y = 50;
 		bottom_y = top_y + HEIGHT;
 		
+		//Set the start Mino Position
 		MINO_START_X = left_x + (WIDTH/2) - Block.SIZE;
 		MINO_START_Y = top_y + Block.SIZE;
 		
+		//set the next Mino Position
 		NEXTMINO_X = right_x + 173;
 		NEXTMINO_Y = top_y + 500;
 		
@@ -84,7 +86,7 @@ public class PlayManager {
 	
 	private Mino pickMino() {
 		
-		//Pick a random Mono
+		//Pick a random Mino
 		Mino mino = null;
 		int i = new Random().nextInt(7);
 		
@@ -291,8 +293,4 @@ public class PlayManager {
 		g2.setFont(new Font("Times New Roman", Font.ITALIC, 80));
 		g2.drawString("Tetris", x+100, y);
 	}
-	
-	//플레이 공간 그리기
-	//테트로미노 설정과 같은 기본 게임플레이 요소 처리
-	//게임 플레이 동작 처리(라인 삭제, 점수 추가)
 }

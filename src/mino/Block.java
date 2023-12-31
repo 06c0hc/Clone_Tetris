@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-//테트리스의 Mino를 구성하는 단일 블록
+//A single block making up Mino
 public class Block extends Rectangle{
 	public int x, y;
 	public static final int SIZE = 30; //30x30 Block

@@ -12,9 +12,9 @@ public class Main {
 		//Add GamePanel to the window
 		GamePanel gp = new GamePanel();
 		window.add(gp);
-		window.pack();
+		window.pack();//Resize the window to fit the panel
 		
-		window.setLocationRelativeTo(null);
+		window.setLocationRelativeTo(null);//Set the window to be centered on the screen
 		window.setVisible(true);
 		
 		gp.LaunchGame();

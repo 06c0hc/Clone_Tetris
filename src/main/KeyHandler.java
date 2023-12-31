@@ -3,7 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-//키보드 조작
+
 public class KeyHandler implements KeyListener{
 
 	public static boolean upPressed, downPressed, leftPressed, rightPressed, pausePressed;
@@ -14,7 +14,7 @@ public class KeyHandler implements KeyListener{
 		
 	}
 
-	//설명 : 키를 입력해서 이동
+	//Keyinput processing
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();

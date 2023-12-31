@@ -7,16 +7,16 @@ import main.GamePanel;
 import main.KeyHandler;
 import main.PlayManager;
 
-//테트리미노 슈퍼클래스
+//Tetrimino's Super Class
 public class Mino {
 	public Block b[] = new Block[4];
-	public Block tempB[] = new Block[4];//이건 무슨 역할?
+	public Block tempB[] = new Block[4];//This TempB array is used to pre-calculate collision handling due to changes in the position value of the block array called b.
 	int autoDropCounter = 0;//the counter increases in every frame
 	public int direction = 1; // There are 4 directions (1/2/3/4)
 	
 	boolean leftCollision, rightCollision, bottomCollision;
 	
-	public boolean active = true;//AutoDrop Enabled Status
+	public boolean active = true;//Mino's active state (if true, it is moving)
 	
 	public boolean deactivating;//Status of whether the bottom of Mino has collision
 	
@@ -34,10 +34,10 @@ public class Mino {
 	}
 	
 	
-	//x, y 설정
+	//set the x,y
 	public void setXY(int x, int y) {}
 	
-	//x,y 변경
+	//update the x,y
 	public void updateXY(int direction) {
 		
 		checkRotationCollision();
@@ -54,11 +54,12 @@ public class Mino {
 		}
 	}
 	
-	
+	//Mino’s status according to rotation
 	public void getDirection1() {}
 	public void getDirection2() {}
 	public void getDirection3() {}
 	public void getDirection4() {}
+	
 	
 	public void checkMovementCollision() {
 		
@@ -90,6 +91,7 @@ public class Mino {
 		}
 		
 	}
+	
 	public void checkRotationCollision() {
 		leftCollision = false;
 		rightCollision = false;
@@ -124,8 +126,8 @@ public class Mino {
 		
 		for(int i = 0; i < PlayManager.staticBlocks.size(); i++) {
 			
-			int targetX = PlayManager.staticBlocks.get(i).x;//다른 블록의 x값
-			int targetY = PlayManager.staticBlocks.get(i).y;//다른 블록의 y값
+			int targetX = PlayManager.staticBlocks.get(i).x;//X of another block
+			int targetY = PlayManager.staticBlocks.get(i).y;//Y of another block
 			
 			//check down
 			for(int ii = 0; ii < b.length; ii++) {
@@ -151,6 +153,7 @@ public class Mino {
 		}
 	}
 	
+	//Processing state changes in Mino
 	public void update() {
 		
 		if(deactivating) {
@@ -171,7 +174,7 @@ public class Mino {
 		
 		checkMovementCollision();
 		
-		if(KeyHandler.downPressed) {//키를 누르면 블록 단위로 한칸씩 빠르게 내려감
+		if(KeyHandler.downPressed) {//Press the key to quickly go down in block size units.
 			//If the mino's bottom is not hitting, it can go down
 			if(bottomCollision == false) {
 				b[0].y += Block.SIZE;
@@ -212,7 +215,7 @@ public class Mino {
 			}
 			deactivating = true;
 		}else {
-			//블록 단위로 한칸씩 자동으로 내려감
+			//Automatically dropped in block size units.
 			autoDropCounter++; //the counter increases in every frame
 			if(autoDropCounter == PlayManager.dropInterval) {
 				//the mino gose down
@@ -243,8 +246,9 @@ public class Mino {
 		}
 	}
 	
+	
 	public void draw(Graphics2D g2) {
-		int margin =2;//블록간의 간격
+		int margin =2;
 		g2.setColor(b[0].c);
 		g2.fillRect(b[0].x+margin, b[0].y+margin, Block.SIZE-(margin*2), Block.SIZE-(margin*2));
 		g2.fillRect(b[1].x+margin, b[1].y+margin, Block.SIZE-(margin*2), Block.SIZE-(margin*2));
