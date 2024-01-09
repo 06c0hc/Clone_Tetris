@@ -1,11 +1,9 @@
 # Clone_Tetris
-
 유튜브 Ryisnow님의 "How to Code Tetris in Java" 영상을 참고하여 만든 Tetris 게임입니다.
-
 #
 
 # 기간
-202311/23~2023/12/01
+2023/11/23~2023/12/01
 #
 
 # 스택
